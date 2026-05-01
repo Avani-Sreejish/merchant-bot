@@ -5,6 +5,10 @@ from app.schemas import ContextRequest, ReplyRequest
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "Merchant Bot is running", "status": "online"}
+
 @app.post("/v1/context")
 def context(req: ContextRequest):
     return store_context(req.scope, req.context_id, req.version, req.payload)
